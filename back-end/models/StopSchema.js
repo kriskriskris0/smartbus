@@ -1,21 +1,12 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const RouteSchema = new mongoose.Schema({
+const StopSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },
-    path: [
-        {
-            time: {
-                type: String,
-                required: true
-            },
-            stop: {
-                type: String
-            }
-        }
-    ]
+    }
 });
 
-export default mongoose.model('Route', RouteSchema);
+const Stop = mongoose.model('Stop', StopSchema);
+
+export default Stop;
