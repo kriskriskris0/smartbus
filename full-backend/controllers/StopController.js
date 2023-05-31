@@ -20,3 +20,25 @@ export const createStop = async (req, res) => {
         });
     }
 }
+
+
+//export const deleteStop = async (req, res) => {
+
+//}
+
+
+
+//export const getAllStops = async (req, res) => {
+
+//}
+
+
+//export const getStopById = async (req, res) => {
+
+//}
+
+
+//export const updatePost = async (req, res) => {
+
+//}
+

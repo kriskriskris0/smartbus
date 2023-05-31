@@ -47,3 +47,53 @@ export const deleteRoute = async (req, res) => {
         });
     }
 }
+
+export const getAllRoutes = async (req, res) => {
+    try {
+        const routes = await Route.find();
+
+        let response = [];
+
+        routes.forEach(el =>
+            response = [
+                ...response,
+                {
+                    _id: el.id,
+                    name: el.name
+                }
+            ]
+        );
+
+        res.json([
+            ...response
+        ]);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            error: true,
+            message: "Не удалось получить маршруты"
+        });
+    }
+}
+
+
+//export const updateRoute = async (req, res) => {
+
+//try {
+//    const doc = new Route({
+//        name: req.body.name,
+//        path: req.body.path
+//    });
+
+//} catch (e) {
+//    console.log(e);
+//    res.status(500).json({
+//        error: true,
+//        message: "Не удалось получить маршруты"
+//    });
+//}
+//}
+
+export const getRouteById = async (req, res) => {
+
+}
