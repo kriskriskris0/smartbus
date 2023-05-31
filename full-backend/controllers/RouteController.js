@@ -107,14 +107,47 @@ res.json({
 }
 
 export const getRouteById = async (req, res) => {
+    try {
+        const route = await Route.findById(req.params.id);
 
+        if (!route) {
+            res.status(404).json({
+                error: true,
+                message: "Маршрут не найден"
+            })
+            return;
+        }
 
+        let response = [];
+        let path = [];
 
+        for (let i = 0; i < route.path.length; i++) {
+            const stop = await Stop.findById(route.path[i].stop);
+            path = [
+                ...path,
+                {
+                    stopId: stop.id,
+                    stop: stop.name,
+                    time: route.path[i].time,
+                    _id: route.path[i]._id
+                }
+            ]
+        }
 
-     //catch (e) {
-     //   console.log(e);
-     //   res.status(500).json({
-     //       error: true,
-     //       message: "Не удалось получить маршрут"
-     //   });
+        response = {
+            _id: route.id,
+            name: route.name,
+            path: path
+        };
+
+        res.json({
+            ...response
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            error: true,
+            message: "Не удалось получить маршрут"
+        });
+    }
 }
