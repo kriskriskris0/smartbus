@@ -77,23 +77,44 @@ export const getAllRoutes = async (req, res) => {
 }
 
 
-//export const updateRoute = async (req, res) => {
+export const updateRoute = async (req, res) => {
 
-//try {
-//    const doc = new Route({
-//        name: req.body.name,
-//        path: req.body.path
-//    });
+try {
+    const doc = new Route({
+        name: req.body.name,
+        path: req.body.path
+    });
+const updatedRoute = await Route.findByIdAndUpdate(req.params.id, doc, { new: true });
 
-//} catch (e) {
-//    console.log(e);
-//    res.status(500).json({
-//        error: true,
-//        message: "Не удалось получить маршруты"
-//    });
-//}
-//}
+if (!updatedRoute) {
+    res.status(404).json({
+        error: true,
+        message: "Маршрут не найдена"
+    });
+    return;
+}
+
+res.json({
+    ...updatedRoute._doc
+});
+} catch (e) {
+    console.log(e);
+    res.status(500).json({
+        error: true,
+        message: "не удалось получить маршруты"
+    });
+}
+}
 
 export const getRouteById = async (req, res) => {
 
+
+
+
+     //catch (e) {
+     //   console.log(e);
+     //   res.status(500).json({
+     //       error: true,
+     //       message: "Не удалось получить маршрут"
+     //   });
 }
