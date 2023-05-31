@@ -27,15 +27,46 @@ export const createStop = async (req, res) => {
 //}
 
 
+export const getAllStops = async (req, res) => {
+    try {
+        const stops = await Stop.find();
 
-//export const getAllStops = async (req, res) => {
+        res.json([
+            ...stops
+        ]);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            error: true,
+            message: "Не удалось получить остановки"
+        });
+    }
+}
 
-//}
 
+export const getStopById = async (req, res) => {
+    try {
+        const stop = await Stop.findById(req.params.id);
 
-//export const getStopById = async (req, res) => {
+        if (!stop) {
+            res.status(404).json({
+                error: true,
+                message: "Остановка не найдена"
+            })
+            return;
+        }
 
-//}
+        res.json({
+            ...stop._doc
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            error: true,
+            message: "Не удалось получить остановку"
+        });
+    }
+}
 
 
 //export const updatePost = async (req, res) => {
