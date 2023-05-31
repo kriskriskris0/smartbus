@@ -1,7 +1,0 @@
-{
-  "name": "smartbus",
-  "version": "1.0.0",
-  "dependencies": {
-    "mongoose": "^7.2.1"
-  }
-}
