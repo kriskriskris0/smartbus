@@ -1,0 +1,334 @@
+:root{
+	font-size: 10px;
+
+    /* Colors */
+    --main: #1373E5;
+	--bg: #EAF1F9;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-size: 1.6rem;
+    font-family: 'Nunito', sans-serif;
+}
+
+#root{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	min-height: 100vh;
+}
+
+*,
+*:after,
+*:before{
+	box-sizing: border-box;
+}
+
+a, button, input, textarea, select{
+	transition: .2s linear;
+	font-size: 1.6rem;
+	font-family: 'Nunito', sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: #000;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h5, p{
+	margin: 0;
+	font-weight: normal;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+	appearance: none;
+}
+
+.button, .input{
+	border: none;
+	cursor: pointer;
+	background: none;
+	outline: none;
+}
+
+path{
+	transition: .2s linear;
+}
+
+.input{
+	cursor: text;
+}
+
+.input:focus::placeholder{
+	opacity: 0;	
+}
+
+.container{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1180px;
+}
+
+.content{
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+    align-items: center;
+    padding: 3.2rem 0;
+}
+
+.default__inner{
+    width: 100%;
+    padding: 3.6rem;
+    background: var(--bg);
+	border-radius: 12px;
+}
+
+.title{
+	font-size: 3.2rem;
+	font-weight: 700;
+}
+
+.center{
+	width: 100%;
+	text-align: center;
+}
+
+.default__content{
+	width: 100%;
+	margin-top: 2.4rem;
+	border-radius: 8px;
+	background: #fff;
+	padding: 2.4rem;
+	min-height: 280px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.default__button{
+	border-radius: 8px;
+	padding: 0.8rem 3.2rem;
+	color: #fff;
+	font-weight: 500;
+	background: var(--main);
+}
+
+.default__button:hover{
+	background: #115ebb;
+}
+
+.default__input{
+	width: 100%;
+	padding: 0.8rem 1.2rem;
+	border-radius: 8px;
+	border: 1px solid var(--main);
+}
+
+.main__wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+}
+
+.main__item{
+    width: calc(100% / 2 - 30px / 2);
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+    gap: 12px;
+}
+
+.main__item--wrapper{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.main__item--num, .main__item--dots{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--main);
+    flex-shrink: 0;
+}
+
+.main__item--dots{
+	cursor: pointer;
+	position: relative;
+}
+
+.main__item--dots svg{
+	width: 20px;
+}
+
+.main__item--dots > svg > path{
+	stroke: var(--main);
+}
+
+.main__item--route{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.main__item--route--dot, .main__item--route--time--value, .main__item--route--name--value{
+    font-weight: 500;
+}
+
+.main__item--route--time, .main__item--route--name{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.main__item--route--time svg, .main__item--route--name svg{
+    flex-shrink: 0;
+    width: 20px;
+}
+
+.main__item--route--time svg path, .main__item--route--name svg path{
+    stroke: var(--main);
+}
+
+.main__routes--none{
+    width: 100%;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.inputs__wrapper{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.input__inner{
+	width: calc(100% / 2 - 30px / 2);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+}
+
+.stops__wrapper{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.main__actions--wrapper{
+	padding-top: 0.4rem;
+	width: 165px;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	z-index: 2;
+	transition: .2s linear;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.main__actions{
+	width: 100%;
+	border-radius: 4px;
+	background: var(--bg);
+	padding: 0.8rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.main__item--dots:hover .main__actions--wrapper{
+	opacity: 1;
+	pointer-events: all;
+}
+
+.main__action--item{
+	width: 100%;
+	padding: 0.8rem;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	transition: .2s linear;
+	color: #000;
+}
+
+.main__action--item:hover svg path{
+	stroke: var(--main);
+}
+
+.main__action--item:hover{
+	background: #CFE6FF;
+	color: var(--main);
+}
+
+.main__action--item.delete:hover svg path{
+	stroke: red;
+}
+
+.main__action--item.delete:hover{
+	color: red;
+}
+
+.main__routes--arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+    pointer-events: none;
+}
+
+.save__button{
+	margin-top: 3.6rem;
+}
+
+/* Адаптив */
+@media(max-width: 1200px){
+	.container{
+		max-width: 978px;
+	}
+}
+@media(max-width: 998px){
+	.container{
+		max-width: 748px;
+	}
+
+	.main__item{
+        width: 100%;
+    }
+}
+@media(max-width: 768px){
+	.container{
+		max-width: 460px;
+	}
+}
+@media(max-width: 480px){
+	.container{
+		max-width: 100%;
+        padding: 0 1.5rem;
+	}
+}
