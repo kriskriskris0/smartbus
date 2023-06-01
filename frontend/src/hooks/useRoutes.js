@@ -1,8 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { HTTP_METHODS, REQUEST_TYPE } from '../consts/HTTP';
 import useRequest from './useRequest';
+import { initCurrentRoute, initRoutes, removeRoute, addRoute, updateRoute } from '../redux/slices/app';
 
 const useRoutes = () => {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -10,6 +11,7 @@ const useRoutes = () => {
 
     const {request} = useRequest();
     const {routes} = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
     const getAllRoutes = async () => {
         setError(false);
@@ -20,6 +22,9 @@ const useRoutes = () => {
 
             if(data.message === "Network Error" || data?.response?.data?.error){
                 setError(true);
+            }
+            else{
+                dispatch(initRoutes(data));
             }
         }
 
@@ -37,6 +42,8 @@ const useRoutes = () => {
         if(data.message === "Network Error" || data?.response?.data?.error){
             return setError(true);
         }
+
+        dispatch(initCurrentRoute(data));
     }
 
     const deleteRoute = async (id) => {
@@ -50,6 +57,8 @@ const useRoutes = () => {
         if(data.message === "Network Error" || data?.response?.data?.error){
             return setError(true);
         }
+
+        dispatch(removeRoute(data));
     }
 
     const createRoute = async (name, path, successCallback = () => {}) => {
@@ -67,6 +76,7 @@ const useRoutes = () => {
             return setError(true);
         }
 
+        dispatch(addRoute(data));
         successCallback();
     }
 
@@ -85,6 +95,7 @@ const useRoutes = () => {
             return setError(true);
         }
 
+        dispatch(updateRoute(data));
         successCallback();
     }
 

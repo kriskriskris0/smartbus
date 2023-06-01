@@ -1,8 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { HTTP_METHODS, REQUEST_TYPE } from '../consts/HTTP';
 import useRequest from './useRequest';
+import {initStops, addStop, removeStop, updateStop} from '../redux/slices/app';
 
 const useStops = () => {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -10,6 +11,7 @@ const useStops = () => {
 
     const {request} = useRequest();
     const {stops} = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
     const getAllStops = async () => {
         setError(false);
@@ -20,6 +22,9 @@ const useStops = () => {
 
             if(data.message === "Network Error" || data?.response?.data?.error){
                 setError(true);
+            }
+            else{
+                dispatch(initStops(data));
             }
         }
 
@@ -38,6 +43,7 @@ const useStops = () => {
             setError(true);
         }
         else{
+            dispatch(addStop(data));
             successCallback();
         }
 
@@ -56,6 +62,9 @@ const useStops = () => {
         else if(data?.response?.data?.error){
             alert("Нельзя удалить остановку, которая используется в маршруте");
         }
+        else{
+            dispatch(removeStop(data));
+        }
 
         setIsLoading(false);
     }
@@ -72,6 +81,7 @@ const useStops = () => {
             setError(true);
         }
         else{
+            dispatch(updateStop(data));
             successCallback();
         }
 
