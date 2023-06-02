@@ -38,6 +38,8 @@ const Main = () => {
                             showArrow={false}
                             className="main__routes--select"
                             placeholder="Выберите автобус"
+                            value={routeId}
+                            onChange={setRoudeId}
                             notFoundContent={
                                 <div className="main__routes--none">Маршруты не найдены</div>
                             }
@@ -45,7 +47,7 @@ const Main = () => {
                             {routes.map(((data, id) => <Select.Option key={id} value={data._id}>{data.name}</Select.Option>))}
                         </Select>
 
-                        <img src="/public/assets/img/arrow-bottom.svg" alt="arrow" className="main__routes--arrow"/>
+                        <img src="/assets/img/arrow-bottom.svg" alt="arrow" className="main__routes--arrow"/>
                     </div>
 
                     <div className="main__content default__content">

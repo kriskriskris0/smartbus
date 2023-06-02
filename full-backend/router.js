@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createStop, deleteStop, getAllStops, getStopById, updatePost } from "./controllers/StopController.js";
-import { createRoute, deleteRoute, findRoutes, getAllRoutes, getRouteById, updateRoute } from "./controllers/RouteController.js";
+import { createRoute, deleteRoute, getAllRoutes, getRouteById, updateRoute } from "./controllers/RouteController.js";
 
 const router = new Router();
 
