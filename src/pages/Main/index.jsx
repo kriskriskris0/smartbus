@@ -45,7 +45,7 @@ const Main = () => {
                             {routes.map(((data, id) => <Select.Option key={id} value={data._id}>{data.name}</Select.Option>))}
                         </Select>
 
-                        <img src="/assets/img/arrow-bottom.svg" alt="arrow" className="main__routes--arrow"/>
+                        <img src="/public/assets/img/arrow-bottom.svg" alt="arrow" className="main__routes--arrow"/>
                     </div>
 
                     <div className="main__content default__content">
